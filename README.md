@@ -1,6 +1,6 @@
 # use-form-ts
 
-[![CI](https://github.com/josh/use-form-ts/actions/workflows/ci.yml/badge.svg)](https://github.com/josh/use-form-ts/actions)
+[![CI](https://github.com/JCreatesGH/use-form-ts/actions/workflows/ci.yml/badge.svg)](https://github.com/JCreatesGH/use-form-ts/actions)
 [![TypeScript](https://img.shields.io/badge/types-included-blue)](https://www.typescriptlang.org/)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 
