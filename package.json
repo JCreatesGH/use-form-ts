@@ -1,0 +1,32 @@
+{
+  "name": "use-form-ts",
+  "version": "0.1.0",
+  "description": "A 2KB type-safe form state + validation hook for React with full type inference.",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "test": "vitest run",
+    "build": "tsc -p tsconfig.json"
+  },
+  "keywords": [
+    "react",
+    "form",
+    "validation",
+    "typescript",
+    "hook",
+    "type-safe"
+  ],
+  "license": "MIT",
+  "peerDependencies": {
+    "react": ">=17"
+  },
+  "devDependencies": {
+    "vitest": "^4.0.0",
+    "typescript": "^5.4.0",
+    "react": "^18 || ^19",
+    "@testing-library/react": "^16.0.0",
+    "jsdom": "^25.0.0"
+  },
+  "author": "Joshua John <josh202@gmail.com>"
+}

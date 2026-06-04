@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="440" viewBox="0 0 800 440" font-family="SFMono-Regular,Consolas,Menlo,monospace">
+  <rect width="800" height="440" rx="10" fill="#1e1e2e"/>
+  <rect width="800" height="34" rx="10" fill="#313244"/><rect y="20" width="800" height="14" fill="#313244"/>
+  <circle cx="20" cy="17" r="6" fill="#f38ba8"/><circle cx="40" cy="17" r="6" fill="#f9e2af"/><circle cx="60" cy="17" r="6" fill="#a6e3a1"/>
+  <text x="400" y="22" fill="#bac2de" font-size="12" text-anchor="middle">SignupForm.tsx</text>
+  <text font-size="13.5" xml:space="preserve">
+    <tspan x="20" y="64" fill="#cba6f7">const</tspan><tspan fill="#cdd6f4"> schema = { email: v.string().</tspan><tspan fill="#89dceb">email</tspan><tspan fill="#cdd6f4">(), pass: v.string().</tspan><tspan fill="#89dceb">min</tspan><tspan fill="#cdd6f4">(8) };</tspan>
+    <tspan x="20" y="92" fill="#cba6f7">const</tspan><tspan fill="#cdd6f4"> { values, errors, isValid, handleChange, handleSubmit } =</tspan>
+    <tspan x="40" y="112" fill="#89b4fa">useForm</tspan><tspan fill="#cdd6f4">({ schema, initialValues: { email: </tspan><tspan fill="#a6e3a1">""</tspan><tspan fill="#cdd6f4">, pass: </tspan><tspan fill="#a6e3a1">""</tspan><tspan fill="#cdd6f4"> }, onSubmit });</tspan>
+    <tspan x="20" y="148" fill="#6c7086">// values is typed { email: string; pass: string } — inferred from schema</tspan>
+  </text>
+  <rect x="20" y="168" width="760" height="150" rx="8" fill="#181825" stroke="#45475a"/>
+  <text font-size="13" font-family="Segoe UI,Helvetica,sans-serif" xml:space="preserve">
+    <tspan x="40" y="196" fill="#bac2de">Email</tspan>
+  </text>
+  <rect x="40" y="204" width="540" height="30" rx="5" fill="#11111b" stroke="#f38ba8"/>
+  <text x="52" y="224" font-size="12.5" fill="#cdd6f4" font-family="Segoe UI,sans-serif">not-an-email</text>
+  <text x="40" y="256" font-size="12" fill="#f38ba8" font-family="Segoe UI,sans-serif">⚠ Must be a valid email</text>
+  <rect x="40" y="270" width="540" height="30" rx="5" fill="#11111b" stroke="#45475a"/>
+  <text x="52" y="290" font-size="12.5" fill="#6c7086" font-family="Segoe UI,sans-serif">password</text>
+  <rect x="596" y="204" width="160" height="96" rx="6" fill="#313244"/>
+  <text x="676" y="248" font-size="13" fill="#6c7086" text-anchor="middle" font-family="Segoe UI,sans-serif">Submit</text>
+  <text x="676" y="266" font-size="10" fill="#6c7086" text-anchor="middle" font-family="Segoe UI,sans-serif">(disabled · isValid=false)</text>
+  <text font-size="13" xml:space="preserve">
+    <tspan x="20" y="352" fill="#a6e3a1">$ npx vitest run</tspan>
+    <tspan x="20" y="376" fill="#a6e3a1"> ✓ src/validators.test.ts (7)</tspan>
+    <tspan x="20" y="398" fill="#a6e3a1"> ✓ src/useForm.test.tsx (4)</tspan>
+    <tspan x="20" y="420" fill="#a6e3a1"> Test Files  2 passed · Tests  11 passed</tspan>
+  </text>
+</svg>
