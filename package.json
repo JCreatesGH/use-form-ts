@@ -5,9 +5,16 @@
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "sideEffects": false,
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
   "scripts": {
     "test": "vitest run",
-    "build": "tsc -p tsconfig.json"
+    "build": "tsc -p tsconfig.json",
+    "prepare": "npm run build"
   },
   "keywords": [
     "react",
@@ -15,18 +22,21 @@
     "validation",
     "typescript",
     "hook",
-    "type-safe"
+    "type-safe",
+    "schema",
+    "type-inference"
   ],
   "license": "MIT",
   "peerDependencies": {
     "react": ">=17"
   },
   "devDependencies": {
-    "vitest": "^4.0.0",
-    "typescript": "^5.4.0",
-    "react": "^18 || ^19",
     "@testing-library/react": "^16.0.0",
-    "jsdom": "^25.0.0"
+    "@types/react": "^18.3.31",
+    "happy-dom": "^20.10.5",
+    "react": "^18 || ^19",
+    "typescript": "^5.4.0",
+    "vitest": "^4.0.0"
   },
   "author": "Joshua John <josh202@gmail.com>"
 }

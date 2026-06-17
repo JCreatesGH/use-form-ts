@@ -40,4 +40,17 @@ describe("validators", () => {
     expect(errors).toEqual({ name: "Required", age: "18+" });
     expect(validate(schema, { name: "Jo", age: 21 })).toEqual({});
   });
+
+  it("oneOf restricts to allowed values", () => {
+    const role = v.oneOf(["admin", "user"] as const);
+    expect(role.parse("guest")).toMatch(/Must be one of/);
+    expect(role.parse("admin")).toBeUndefined();
+    expect(v.oneOf([1, 2, 3], "pick 1-3").parse(9)).toBe("pick 1-3");
+  });
+
+  it("pattern enforces a regex", () => {
+    const slug = v.string().pattern(/^[a-z-]+$/, "lowercase-only");
+    expect(slug.parse("Hello")).toBe("lowercase-only");
+    expect(slug.parse("a-slug")).toBeUndefined();
+  });
 });

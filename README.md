@@ -26,7 +26,7 @@ const schema = {
 };
 
 function SignupForm() {
-  const { values, errors, touched, isValid, handleChange, handleBlur, handleSubmit } =
+  const { getFieldProps, errors, touched, isValid, isDirty, handleSubmit } =
     useForm({
       schema,
       initialValues: { email: "", password: "", age: undefined },
@@ -35,36 +35,59 @@ function SignupForm() {
 
   return (
     <form onSubmit={handleSubmit}>
-      <input name="email" value={values.email} onChange={handleChange} onBlur={handleBlur} />
+      {/* getFieldProps spreads name + value + onChange + onBlur */}
+      <input {...getFieldProps("email")} />
       {touched.email && errors.email && <span>{errors.email}</span>}
-      <button disabled={!isValid}>Sign up</button>
+      <button disabled={!isValid || !isDirty}>Sign up</button>
     </form>
   );
 }
 ```
 
+`values`, `errors`, `setFieldValue`, and `getFieldProps` are all inferred from `schema` — rename
+a field and TypeScript flags every stale usage, and passing the wrong value type
+(`setFieldValue("age", "x")`) is a compile error.
+
 ## Why
 
-- **Inference** — `values` and `errors` types are derived from your schema; rename a field and TypeScript catches every usage.
-- **Composable validators** — `v.string().min(3).max(20).pattern(/^[a-z]+$/)`, `v.number().refine(fn, msg)`, `.optional()`.
-- **Batteries-included hook** — `handleChange` / `handleBlur` / `handleSubmit`, `touched`, `isValid`, `submitting`, `reset`, `setFieldValue`.
+- **Real inference** — the schema drives the types of `values`, `errors`, and every setter; no `any` leaks through the hook.
+- **Composable validators** — `v.string().min(3).max(20).pattern(/^[a-z]+$/)`, `v.number().refine(fn, msg)`, `v.oneOf(["a","b"])`, `.optional()`.
+- **Batteries-included hook** — `getFieldProps`, `handleChange` / `handleBlur` / `handleSubmit`, `touched`, `isValid`, `isDirty`, `submitting`, `reset(next?)`, `setFieldValue`, `setFieldTouched`.
+- **Real-input aware** — `handleChange` coerces `type="number"`/`"range"` to numbers and checkboxes to booleans, so `v.number()` schemas validate against actual DOM inputs.
 - **Tiny** — no dependencies beyond React; ~2KB.
 
 ## API
+
+### Validators
 
 | Validator | Modifiers |
 |-----------|-----------|
 | `v.string()` | `.min` `.max` `.email` `.pattern` `.refine` `.optional` |
 | `v.number()` | `.min` `.max` `.refine` `.optional` |
 | `v.boolean()` | `.refine` `.optional` |
+| `v.oneOf([...])` | `.refine` `.optional` |
 
-`validate(schema, values)` is also exported for use outside React.
+`validate(schema, values)` is also exported for validation outside React.
+
+### Hook return value
+
+| Key | Type | Notes |
+|-----|------|-------|
+| `values` | `Values<S>` | inferred from schema |
+| `errors` | `Errors<S>` | per-field messages, recomputed on change |
+| `touched` | `Partial<Record<keyof S, boolean>>` | set on blur / submit |
+| `isValid` / `isDirty` | `boolean` | valid against schema / changed from baseline |
+| `submitting` | `boolean` | true while `onSubmit` is awaiting |
+| `getFieldProps(name)` | `{ name, value, onChange, onBlur }` | spread onto an input |
+| `setFieldValue(name, value)` | — | type-checked against the field |
+| `setFieldTouched(name, b?)` | — | mark a field touched / untouched |
+| `reset(next?)` | — | restore baseline, or adopt `next` as the new clean baseline |
 
 ## Development
 
 ```bash
 npm install
-npm test    # 11 tests (vitest + @testing-library/react)
+npm test    # 17 tests (vitest + @testing-library/react)
 npm run build
 ```
 
