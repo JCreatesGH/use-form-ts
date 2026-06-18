@@ -1,7 +1,7 @@
 {
   "name": "use-form-ts",
-  "version": "0.1.0",
-  "description": "A 2KB type-safe form state + validation hook for React with full type inference.",
+  "version": "0.2.0",
+  "description": "A tiny type-safe form state + validation hook for React: full type inference, cross-field validation, and server-error handling.",
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
